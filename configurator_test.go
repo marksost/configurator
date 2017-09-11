@@ -25,20 +25,15 @@ var _ = Describe("configurator.go", func() {
 	})
 
 	Describe("`InitializeConfig` method", func() {
-		BeforeEach(func() {
-			// Set config env var
-			os.Setenv(ConfigLocation, path.Join("test/data/valid-config.json"))
-
-			// Unset test environment variables
-			os.Unsetenv(EnvPrefix + "ENV_FOO")
-			os.Unsetenv(EnvPrefix + "ENV_BAR")
-			os.Unsetenv(EnvPrefix + "ENV_BAZ")
-		})
-
 		Context("Without config file or environment variables set", func() {
 			BeforeEach(func() {
 				// Ensure config env var is unset
 				os.Unsetenv(ConfigLocation)
+
+				// Unset test environment variables
+				os.Unsetenv(EnvPrefix + "ENV_FOO")
+				os.Unsetenv(EnvPrefix + "ENV_BAR")
+				os.Unsetenv(EnvPrefix + "ENV_BAZ")
 			})
 
 			It("Uses default values", func() {
@@ -54,6 +49,16 @@ var _ = Describe("configurator.go", func() {
 		})
 
 		Context("With config file available but no environment variables set", func() {
+			BeforeEach(func() {
+				// Set config env var
+				os.Setenv(ConfigLocation, path.Join("test/data/valid-config.json"))
+
+				// Unset test environment variables
+				os.Unsetenv(EnvPrefix + "ENV_FOO")
+				os.Unsetenv(EnvPrefix + "ENV_BAR")
+				os.Unsetenv(EnvPrefix + "ENV_BAZ")
+			})
+
 			It("Uses default values and config file overrides", func() {
 				// Call method
 				InitializeConfig(testConfig)
@@ -68,6 +73,9 @@ var _ = Describe("configurator.go", func() {
 
 		Context("With environment variables set", func() {
 			BeforeEach(func() {
+				// Set config env var
+				os.Setenv(ConfigLocation, path.Join("test/data/valid-config.json"))
+
 				// Set test environment variables
 				os.Setenv(EnvPrefix+"ENV_FOO", "foo")
 				os.Setenv(EnvPrefix+"ENV_BAR", "1234")

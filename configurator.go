@@ -16,10 +16,22 @@ import (
 )
 
 var (
-	EnvPrefix      = "CONFIGURATOR_"      // Environment variable prefix
-	ConfigLocation = EnvPrefix + "CONFIG" // Environment variable with path to config file
+	// Environment variable prefix
+	EnvPrefix = "CONFIGURATOR_"
+	// Environment variable with path to config file
+	ConfigLocation = EnvPrefix + "CONFIG"
 )
 
+// InitializeConfig is the main entrypoint to this package and takes in what is presumed to be
+// a configuration struct with proper tags. It attempts to set up default values for each property,
+// based on a `default` tag on the property. It then attempts to read in a configuration file
+// based on a location retrieved from an environment variable (set with the above `ConfigLocation`) variable.
+// This configuration file must be proper JSON and keys should map to `json` tags on the struct properties.
+// NOTE: You may want to alter the value of that variable to be what your environment uses
+// It will then attempt to read in environment variables to each struct property, using a concatenation
+// of the `EnvPrefix` variable above and the value of an `env` tag for each property.
+// Finally, it will parse command-line flags, using the unprefixed, lowercase version of the `env` tag value
+// for each property
 func InitializeConfig(c interface{}) {
 	// Set up default values for configuration struct
 	setDefaults(c)
