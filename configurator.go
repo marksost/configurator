@@ -16,9 +16,11 @@ import (
 )
 
 var (
-	// Environment variable prefix
+	// EnvPrefix is a prefix used for environment variables
+	// NOTE: This can be changed from outside this package before calling `InitializeConfig`
 	EnvPrefix = "CONFIGURATOR_"
-	// Environment variable with path to config file
+	// ConfigLocation is an environment variable with path to a config file
+	// NOTE: This can be changed from outside this package before calling `InitializeConfig`
 	ConfigLocation = EnvPrefix + "CONFIG"
 )
 
