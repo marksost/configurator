@@ -19,3 +19,16 @@ and then import it into your project with:
 ```go
 import "github.com/marksost/configurator"
 ```
+
+and then use it by passing in your configuration struct like:
+
+```go
+// Define your config
+type Config struct { /* ...your config properties go here... */ }
+
+// Create a new config instance
+c := &Config{}
+
+// Initialize it!
+configurator.InitializeConfig(c)
+```
