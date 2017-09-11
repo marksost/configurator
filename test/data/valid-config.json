@@ -1,0 +1,6 @@
+{
+	"foo" : "abcd",
+  "test" : {
+    "test-foo" : "bcde"
+  }
+}

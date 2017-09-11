@@ -1,0 +1,4 @@
+// This is invalid JSON and will error when unmarshaling
+{
+	"name" : "foo",
+}
