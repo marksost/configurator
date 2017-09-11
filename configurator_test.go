@@ -34,6 +34,7 @@ var _ = Describe("configurator.go", func() {
 				os.Unsetenv(EnvPrefix + "ENV_FOO")
 				os.Unsetenv(EnvPrefix + "ENV_BAR")
 				os.Unsetenv(EnvPrefix + "ENV_BAZ")
+				os.Unsetenv(EnvPrefix + "ENV_TEST_FOO")
 			})
 
 			It("Uses default values", func() {
@@ -57,6 +58,7 @@ var _ = Describe("configurator.go", func() {
 				os.Unsetenv(EnvPrefix + "ENV_FOO")
 				os.Unsetenv(EnvPrefix + "ENV_BAR")
 				os.Unsetenv(EnvPrefix + "ENV_BAZ")
+				os.Unsetenv(EnvPrefix + "ENV_TEST_FOO")
 			})
 
 			It("Uses default values and config file overrides", func() {
@@ -80,6 +82,8 @@ var _ = Describe("configurator.go", func() {
 				os.Setenv(EnvPrefix+"ENV_FOO", "foo")
 				os.Setenv(EnvPrefix+"ENV_BAR", "1234")
 				os.Setenv(EnvPrefix+"ENV_BAZ", "0")
+				os.Unsetenv(EnvPrefix + "ENV_TEST_FOO")
+
 			})
 
 			It("Uses default values, config file overrides, and environment variable overrides", func() {
