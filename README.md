@@ -33,6 +33,7 @@ c := &Config{}
 configurator.InitializeConfig(c)
 ```
 
+
 ## Explanation of functionality
 
 Configurator is designed to take in an interface value - a configuration struct - which is used for configuration for a Go application. This stuct can contain any properties it wants, but each should have a set of tags that tell configurator how to set it's value. Currently, it supports the following types for properties: `string`, `int`, `boolean`, `struct`. NOTE: by supporting `struct`s, configurator will recursively set properties of that struct, which makes setting up logical configuration groups within the global object easy. Any type not listed will be ignored during the below operations (but adding support for types is welcomed via PR!).
