@@ -190,7 +190,7 @@ func handleBoolEnvironmentVariable(v reflect.Value, i int, flagName string, env 
 	// Store field
 	field := v.Field(i)
 
-	// Handle non-empty enviroment variable
+	// Handle non-empty environment variable
 	if env != "" {
 		parsed, _ := strconv.ParseBool(env)
 		field.SetBool(parsed)
@@ -212,7 +212,7 @@ func handleIntEnvironmentVariable(v reflect.Value, i int, flagName string, env s
 	// Store field
 	field := v.Field(i)
 
-	// Handle non-empty enviroment variable
+	// Handle non-empty environment variable
 	if env != "" {
 		parsed, _ := strconv.ParseInt(env, 10, 0)
 		field.SetInt(int64(parsed))
@@ -234,7 +234,7 @@ func handleStringEnvironmentVariable(v reflect.Value, i int, flagName string, en
 	// Store field
 	field := v.Field(i)
 
-	// Handle non-empty enviroment variable
+	// Handle non-empty environment variable
 	if env != "" {
 		field.SetString(env)
 	}
@@ -249,7 +249,7 @@ func handleStringEnvironmentVariable(v reflect.Value, i int, flagName string, en
 	}
 }
 
-// formFlagName converts a field's tag corresponding to an enviroment variable
+// formFlagName converts a field's tag corresponding to an environment variable
 // into a string to use as a flag's name. Will strip the application prefix
 // and replace underscores with hypens. Will also return the name in lowercase.
 // Ex: IMG_FOO_BAR_BAZ => foo-bar-baz
